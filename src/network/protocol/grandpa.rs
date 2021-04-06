@@ -89,7 +89,7 @@ pub struct CommitMessageRef<'a> {
 pub struct CompactCommitRef<'a> {
     pub target_hash: &'a [u8; 32],
     pub target_number: u32,
-    pub precommits: Vec<PrecommitRef<'a>>,
+    pub precommits: Vec<UnsignedPrecommitRef<'a>>,
 
     /// List of ed25519 signatures and public keys.
     pub auth_data: Vec<(&'a [u8; 64], &'a [u8; 32])>,
@@ -123,6 +123,7 @@ pub struct CatchUpRequest {
 
 #[derive(Debug, Clone)]
 pub struct CatchUpRef<'a> {
+    pub set_id: u64,
     pub round_number: u64,
     pub prevotes: Vec<PrevoteRef<'a>>,
     pub precommits: Vec<PrecommitRef<'a>>,
